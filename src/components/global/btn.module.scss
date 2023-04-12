@@ -1,0 +1,9 @@
+@import "../../styles/general/variables";
+@import "../../styles/general/mixin";
+
+.btn-active {
+  @include general-btn($white-c-secondary-color, $white-bg-primary-color);
+}
+.btn-inactive {
+  @include general-btn($white-bg-primary-color, $white-c-secondary-color);
+}

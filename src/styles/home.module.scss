@@ -1,0 +1,15 @@
+@import "general/variables";
+@import "general/mixin";
+
+.main {
+  @include center-flex;
+  width: 100vw;
+  height: 100vh;
+  section {
+    width: clamp(200px, 90%, 500px);
+    height: clamp(200px, 100%, 500px);
+    @include center-flex(5px){
+      flex-direction: column;
+    }
+  }
+}

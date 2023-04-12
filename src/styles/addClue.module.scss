@@ -1,0 +1,56 @@
+@import "general/variables";
+@import "general/mixin";
+.section {
+  position: absolute;
+  width: clamp(300px, 70vw, 900px);
+  height: 100%;
+  top: 100%;
+
+  textarea {
+    width: 100%;
+    height: calc(50% - 80px);
+    border: solid 2px $white-c-secondary-color;
+    color: $white-c-secondary-color;
+    font-size: 20px;
+    
+
+    resize: none;
+    outline: none;
+    &::placeholder {
+      color: $white-c-secondary-color;
+    }
+  }
+  z-index: 20;
+}
+
+.btnBurger {
+  width: calc(100% - 1px);
+  height: 80px;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  border: solid 2px $transparent;
+  border-radius: 15px 15px 0 0;
+
+
+  & > div {
+    height: 100%;
+    width: 100%;
+    @include center-flex(10px);
+    overflow: hidden;
+    border-radius: 15px;
+    
+    & > div {
+      width: 10px;
+      height: 80%;
+      background-color: $white-c-secondary-color;
+    }
+    & > h2 {
+      color: $white-c-secondary-color;
+      font-size: 25px;
+      display: inline-block;
+      width: auto;
+      overflow: hidden;
+    }
+  }
+}

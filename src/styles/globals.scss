@@ -1,0 +1,26 @@
+@import "general/variables";
+@import "general/mixin";
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap");
+* {
+  margin: 0;
+  box-sizing: border-box;
+  outline: none;
+  box-sizing: border-box;
+  background-color: $white-bg-primary-color;
+}
+html,
+body {
+  background-color: $white-bg-primary-color;
+  color: $white-c-secondary-color;
+  padding: 0;
+
+  width: 100vw;
+  min-width: $min-width;
+  height: 100vh;
+  min-height: 100vh;
+}
+html {
+}
+
+body {
+}

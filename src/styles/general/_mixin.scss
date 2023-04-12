@@ -1,0 +1,29 @@
+@mixin general-btn($bg, $color) {
+  background-color: $bg;
+  color: $color;
+  border: solid 1px $color;
+
+  @include center-flex; 
+  border-radius: 16px;
+  min-width: calc(max-content + 40px);
+  padding: 20px 10px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $color;
+    color: $bg;
+    border: solid 1px $bg;
+  }
+}
+
+
+@mixin center-flex($gap: 0) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  gap: $gap;
+  @content;
+}

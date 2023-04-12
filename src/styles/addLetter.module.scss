@@ -1,0 +1,60 @@
+@import "general/variables";
+@import "general/mixin";
+
+.main {
+  width: 100vw;
+  height: 100vh;
+  @include center-flex {
+    flex-direction: column;
+  }
+  .container_sections {
+    position: relative;
+    width: max-content;
+    height: auto;
+    //overflow: hidden;
+    z-index: 30;
+    @include center-flex {
+      flex-direction: column;
+    }
+
+    .input_container {
+      width: clamp(300px, 70vw, 900px);
+      height: 45vh;
+      @include center-flex {
+        align-items: flex-end;
+        align-content: flex-end;
+      }
+      z-index: 10;
+      textArea {
+        width: 100%;
+        height: 80%;
+
+        background-color: rgba(0, 0, 0, 0);
+        border: rgba(0, 0, 0, 0);
+        outline: none;
+
+        color: $white-c-secondary-color;
+        font-size: 32px;
+        resize: none;
+        &::placeholder {
+          color: $white-c-secondary-color;
+        }
+      }
+    }
+    .btn_container {
+      width: clamp(300px, 70vw, 900px);
+      height: 30vh;
+      @include center-flex(10px) {
+        flex-direction: column;
+      }
+      .advertence {
+        width: clamp(300px, 100%, 900px);
+      }
+      .btn {
+        width: clamp(300px, 100%, 900px);
+        @include center-flex(20px);
+      }
+      z-index: 30;
+    }
+  }
+}
