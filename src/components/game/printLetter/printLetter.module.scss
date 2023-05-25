@@ -1,0 +1,39 @@
+@import "../../../styles/general/variables";
+@import "../../../styles/general/mixin";
+
+.get-letter {
+  width: 100%;
+  height: auto;
+  @include center-flex {
+    flex-wrap: wrap;
+  }
+
+  ul {
+    width: auto;
+    height: auto;
+    margin: auto;
+    @include center-flex(10px) {
+      flex-wrap: wrap;
+    }
+
+    li {
+      list-style: none;
+      margin: 0 5px;
+      padding: 10px;
+      border-bottom: solid 1px $white-c-secondary-color;
+      font-size: 1.5rem;
+
+      color: $white-c-secondary-color;
+      background-color: $white-bg-primary-color;
+      font-weight: bold;
+    }
+    .true {
+      color: $green-c-primary-color;
+      border-bottom: solid 1px $green-c-primary-color;
+    }
+
+    .false {
+      color: $white-c-secondary-color;
+    }
+  }
+}

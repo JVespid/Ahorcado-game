@@ -7,79 +7,113 @@ export default async function wordApiSupabase(req, res) {
   );
 
   const id =
-    typeof req.query.id != "number" ? parseInt(req.query.id) : req.query.id;
+    typeof req.body.id != "number" ? parseInt(req.body.id) : req.body.id;
+  let dat = { code: 401, data: null, message: "error the server internal" },
+    info = false;
 
-  if (req.method === "POST" && req.body.word.trim() !== "") {
-    console.log("post word");
-    addWord({ res, supabase, word: req.body.word });
+  switch (req.method) {
+    case "POST":
+      if (
+        !req.body.word.trim() ||
+        req.body.password !== process.env.PASSWORD_MASTER
+      ) {
+        dat.message = "error, check password or word";
+        break;
+      }
+      dat = await addWord({
+        res,
+        supabase,
+        word: req.body.word,
+        clue: req.body.clue,
+      });
+      info = true;
+      break;
+    case "GET":
+      if (req.query.random) {
+        dat = await getWordsRandom({ res, supabase });
+        info = true;
+      } else {
+        dat = await getWordsAll({ res, supabase });
+        info = true;
+      }
+      break;
+    case "PUT":
+      if (!(req.body.word.trim() !== "" && id !== undefined)) break;
+      dat = await updateWord({ res, supabase, word: req.body.word, id });
+      info = true;
+      break;
+    case "DELETE":
+      dat = await deleteWord({ res, supabase, id });
+      info = true;
+      break;
+
+    default:
+      info = false;
+      break;
   }
-  if (req.method === "GET") {
-    console.log("get words");
-    const { code, data, message } = await getWordsAll({ res, supabase });
-    console.log("code", code, "data", data, "message", message)
+  if (info) {
+    const { code, data, message } = dat;
+
     res.status(code).json({ data, message });
+  } else {
+    res.status(400).json({
+      data: { method: res.method, query: res.query },
+      message: "review the query data",
+    });
   }
-  if (req.method === "PUT" && req.body.word.trim() !== "" && id !== undefined) {
-    console.log("put word");
-    updateWord({ res, supabase, word: req.body.word, id });
-  }
-  if (req.method === "DELETE") {
-    console.log("delete word");
-    deleteWord({ res, supabase, id });
-  }
-  /* res.status(400).json({
-    data: { method: res.method, query: res.query },
-    message: "review the query data",
-  }); */
 }
 
-const getWordsAll = async ({ res, supabase }) => {
+const getWordsAll = async ({ supabase }) => {
   const { data, error } = await supabase.from("words").select("*");
-  if (error) {
-    return { code: 400, data: error, message: "Error fetching words" };
-    res.status(400).json({ data: error, message: "Error fetching words" });
-  }
+  if (error) return { code: 400, data: error, message: "Error fetching words" };
 
   return { code: 200, data, message: "Words fetched successfully" };
-  res.status(200).json({ data, message: "Words fetched successfully" });
 };
 
-const addWord = async ({ res, supabase, word }) => {
+const getWordsRandom = async ({ supabase }) => {
+  const { data, error } = await supabase.from("words").select("*");
+  if (error) return { code: 400, data: error, message: "Error fetching words" };
+  const data1 = data[Math.floor(Math.random() * data.length)];
+
+  return { code: 200, data: data1, message: "Words fetched successfully" };
+};
+
+const addWord = async ({ supabase, word, clue }) => {
   const { data: wordLast, error: errorLast } = await supabase
     .from("words")
     .select(word)
     .eq("word", word);
-  if (errorLast) {
-    res.status(400).json({ data: errorLast, message: "Error adding word" });
-  }
+
+  if (wordLast)
+    return { code: 400, data: errorLast, message: "Error adding word" };
+
   if (wordLast != word) {
-    const { data, error } = await supabase.from("words").insert({ word });
-    if (error) {
-      res.status(400).json({ data: error, message: "Error adding word" });
-    }
-    res.status(200).json({ data, message: "Word added successfully" });
+    const { data, error } = await supabase
+      .from("words")
+      .insert({ word: word, clue: clue });
+    if (error) return { code: 400, data: error, message: "Error adding word" };
+    return { code: 200, data, message: "Word added successfully" };
   }
-  res.status(200).json({
+  return {
+    code: 220,
     data: { wordLast, wordActual: word },
     message: "Word already exists",
-  });
+  };
 };
 
-const updateWord = async ({ res, supabase, word, id }) => {
+const updateWord = async ({ supabase, word, id }) => {
   const { data, error } = await supabase
     .from("words")
     .update({ word })
     .eq("id", id);
-  if (error) {
-    res.status(400).json({ data: error, message: "Error updating word" });
-  }
-  res.status(200).json({ data, message: "Word updated successfully" });
+  if (error) return { code: 400, data: error, message: "Error updating word" };
+
+  return { code: 200, data, message: "Word updated successfully" };
 };
 
-const deleteWord = async ({ res, supabase, id }) => {
+const deleteWord = async ({ supabase, id }) => {
   const { data, error } = await supabase.from("words").delete().eq("id", id);
-  if (error) {
-    res.status(400).json({ data: error, message: "Error deleting word" });
-  }
-  res.status(200).json({ data, message: "Word deleted successfully" });
+  if (error) return { code: 400, data: error, message: "Error deleting word" };
+
+  return { code: 200, data, message: "Word deleted successfully" };
 };

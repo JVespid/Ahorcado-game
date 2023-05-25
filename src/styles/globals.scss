@@ -7,6 +7,15 @@
   outline: none;
   box-sizing: border-box;
   background-color: $white-bg-primary-color;
+  //border: solid red 1px;
+}
+body {
+  height: max-content;
+
+  overflow: hidden;
+
+  @include center-flex;
+
 }
 html,
 body {
@@ -22,5 +31,11 @@ body {
 html {
 }
 
-body {
+#__next {
+  @include center-flex {
+    margin: auto;
+  }
+
+  width: 100%;
+  height: 100%;
 }

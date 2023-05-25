@@ -1,0 +1,60 @@
+@import "../../../styles/general/variables";
+@import "../../../styles/general/mixin";
+
+.modal-bg {
+  @include center-flex(10px) {
+    flex-direction: column;
+  }
+  position: absolute;
+  border: 1px solid $white-c-secondary-color;
+  border-radius: 15px;
+  
+  z-index: 200;
+  opacity: 0.9;
+
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.36);
+-moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.36);
+box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.36);
+
+  width: clamp(300px, 50%, 400px);
+
+  height: auto;
+  padding: 20px;
+  * {
+    background-color: $transparent;
+  }
+}
+
+
+.title-container {
+  margin: 20px auto;
+
+  font-size: 1.5rem;
+  height: auto;
+  h2 {
+    height: auto;
+  }
+}
+
+.messages-container {
+  margin: 20px auto;
+  p {
+    height: auto;
+    border-bottom: 1px solid $white-c-secondary-color;
+    overflow: hidden;
+    text-overflow: clip;
+
+    white-space: nowrap;
+    //overflow-wrap: unset;
+
+    font-family: monospace;
+
+    text-align: center;
+
+    height: 20px;
+  }
+}
+
+.btn-container {
+  margin: 20px auto;
+}

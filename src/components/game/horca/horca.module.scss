@@ -1,0 +1,47 @@
+@import "../../../styles/general/variables";
+@import "../../../styles/general/mixin";
+
+.container-body {
+  @include center-flex {
+    margin: auto;
+    flex-direction: column;
+  }
+  height: auto;
+  width: auto;
+}
+
+.container-grups {
+  @include center-flex {
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: flex-start;
+  }
+}
+
+.content-img {
+  @include center-flex;
+  background-color: $transparent;
+  width: 100px;
+  height: 100px;
+  z-index: 100;
+  * {
+    background-color: $transparent;
+  }
+}
+.content-img-rostro {
+  transform: translateX(2px) translateY(11px);
+}
+.content-img-brazoLeft {
+  transform: translateX(60px) translateY(-10px) rotate(45deg);
+}
+.content-img-brazoRight {
+  transform: translateX(-60px) translateY(-10px) rotate(-45deg);
+}
+.content-img-cuerpo {
+}
+.content-img-pieLeft {
+  transform: translateX(10px) translateY(-20px) rotate(45deg);
+}
+.content-img-pieRight {
+  transform: translateX(-10px) translateY(-20px) rotate(-45deg);
+}

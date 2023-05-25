@@ -1,0 +1,30 @@
+@import "../../../styles/general/variables";
+@import "../../../styles/general/mixin";
+.container-clue {
+  @include center-flex(10px) {
+    margin: 10px;
+    flex-wrap: wrap;
+  }
+  width: 100%;
+  height: auto;
+}
+
+.h2-container {
+  width: auto;
+  height: auto;
+  text-align: center;
+  color: $white-c-secondary-color;
+  background-color: $transparent;
+  font-size: 20px;
+}
+
+.btn-clue {
+  width: auto;
+  height: auto;
+  padding: 5px;
+  color: $white-c-secondary-color;
+  background-color: $transparent;
+  border: solid 1px $white-c-secondary-color;
+  cursor: pointer;
+  border-radius: 5px;
+}

@@ -1,22 +1,60 @@
 import axios from "axios";
-import { useEffect, useMemo, useState } from "react";
 
 export const useDBWords = () => {
   const url = "/api/wordApiSupabase";
-  const [values, setValues] = useState([]);
 
   const getValue = async () => {
     const { data } = await axios.get(url);
-    return data;
+    return { result: data };
     //setValues(data);
   };
 
-  const value = useMemo(
-    () => ({
-      data: values,
-    }),
-    [values],
-  );
+  const getValueRandom = async () => {
+    const { data } = await axios.get(url, { params: { random: true } });
+    return { result: data };
+    //setValues(data);
+  };
+  const addValue = async ({ word, clue, password }) => {
+    const limits = /[a-zA-Z]/;
+    const limitsComas = /[áéíóúüÁÉÍÓÚ]/;
+    const limitNoLetter = /[^a-zA-Z]/;
+    const wordNew = word
+      .split("")
+      .filter(
+        (e, index) =>
+          e == " " &&
+          (limits.test(word[index - 1]) || limits.test(word[index + 1])),
+      )
+      .join("");
 
-  return { value, getValue };
+    console.log({ wordNew });
+
+    if (limitsComas.test(wordNew) || limitNoLetter.test(wordNew)) {
+      return {
+        result: {
+          status: 400,
+          data: "word no valid",
+          message: "error, the word have a character not allowed",
+        },
+      };
+    }
+    const result = await axios.post(url, {
+      type: "AddWord",
+      word,
+      clue,
+      password,
+    });
+    return { result };
+  };
+
+  const ranking = async ({ name, punctuations }) => {
+    const result = await axios.post(url, {
+      type: "Ranking",
+      name,
+      punctuations,
+    });
+    return { result };
+  };
+
+  return { getValue, addValue, getValueRandom };
 };

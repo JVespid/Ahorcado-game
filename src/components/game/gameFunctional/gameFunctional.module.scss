@@ -1,0 +1,58 @@
+@import "../../../styles/general/variables";
+@import "../../../styles/general/mixin";
+.inputs {
+  @include center-flex(10px) {
+    margin: auto;
+    flex-wrap: wrap;
+  }
+
+  input {
+    text-align: center;
+    vertical-align: bottom;
+
+    border-color: $transparent;
+    border-bottom: solid 1px $white-c-secondary-color;
+
+    color: $white-c-secondary-color;
+
+    &::placeholder {
+      color: $white-c-secondary-color;
+    }
+  }
+}
+
+@keyframes letterCorrect {
+  0% {
+    background-color: $white-bg-primary-color;
+  }
+  50% {
+    background-color: $green-c-primary-color;
+  }
+  100% {
+    background-color: $white-bg-primary-color;
+  }
+}
+
+
+.letter-correct{
+  
+  animation-name: letterCorrect;
+  animation-duration: 1s; /* Duración de la animación */
+  animation-timing-function: ease; /* Función de temporización de la animación */
+  animation-delay: 0s; /* Retardo antes de que comience la animación */
+  animation-iteration-count: 1; /* Cantidad de veces que se repite la animación */
+  animation-fill-mode: forwards; /* Estilo aplicado al final de la animación */
+
+}
+
+.letters-word {
+  width: 6rem;
+  height: 8rem;
+
+  font-size: 2rem;
+}
+.space-between-letters {
+  width: 3rem;
+  border-color: $transparent;
+  border-bottom: solid 1px $white-c-secondary-color;
+}

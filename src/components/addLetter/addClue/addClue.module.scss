@@ -1,5 +1,5 @@
-@import "general/variables";
-@import "general/mixin";
+@import "../../../styles/general/variables";
+@import "../../../styles/general/mixin";
 .section {
   position: absolute;
   width: clamp(300px, 70vw, 900px);

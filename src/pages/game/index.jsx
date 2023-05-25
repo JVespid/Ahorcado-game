@@ -1,36 +1,45 @@
-import React, { useEffect } from "react";
-import Btn from "../../components/global/btn";
-
-import { useDetectedLetter } from "../../services/hooks/useDetectedLetter";
+import { useContext, useEffect } from "react";
 import Logo from "@/components/global/logo";
-if (typeof window !== "undefined")
-  localStorage.setItem("letter-array", JSON.stringify([]));
 
-const Index = () => {
-  const [tecla, setTecla] = React.useState("");
-  const { letter } = useDetectedLetter();
-  const hola = () => {
-    console.log("hola");
-  };
+import PrintLetter from "@/components/game/printLetter/printLetter";
+import GameFunctional from "@/components/game/gameFunctional/gameFunctional";
+import style from "@/styles/game.module.scss";
+import { useWinTheGame } from "@/services/hooks/useWinTheGame";
+import { contextGeneral } from "@/services/context/general/context";
+import ModalToWinOrLose from "@/components/game/modalToWinOrLose/modalToWinOrLose";
+import Horca from "@/components/game/horca/horca";
+import Clue from "@/components/game/clue/clue";
 
-  useEffect(() => {}, []);
+export default function Index() {
+  const { lastLetter, word, clue } = useContext(contextGeneral);
+  const { winierOrLoser,resetGame, result: winOrLose, attemptsUser } = useWinTheGame();
+
+  useEffect(() => {
+    if (lastLetter && lastLetter.trim()) {
+      winierOrLoser({ letter: lastLetter, word });
+    }
+  }, [lastLetter]);
 
   return (
     <>
       <Logo />
-      <div>
-        Index {letter}
-        <Btn
-          value={"hola"}
-          action={hola}
-          type={"active"}
-          width={"200px"}
-          height={"100px"}
-        ></Btn>
-        <Btn value={"hola"} action={hola} type={"inactive"}></Btn>
-      </div>
+
+      <ModalToWinOrLose winOrLose={winOrLose} resetGame={resetGame} />
+
+      <main className={style.main}>
+        <article className={style["horca-man"]}>
+          <Horca attemptsUser={attemptsUser} />
+        </article>
+
+        <article>
+          <Clue clue={clue}/>
+        </article>
+
+        <article className={style["inputs-letters"]}>
+          <GameFunctional />
+          <PrintLetter />
+        </article>
+      </main>
     </>
   );
-};
-
-export default Index;
+}

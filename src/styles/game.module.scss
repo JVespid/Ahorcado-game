@@ -1,0 +1,20 @@
+@import "general/variables";
+@import "general/mixin";
+
+.main {
+  @include center-flex {
+    margin: auto;
+    flex-direction: column;
+  }
+
+  height: auto;
+  width: auto;
+}
+
+.inputs-letters {
+}
+.title-game {
+}
+
+.horca-man {
+}

@@ -1,9 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
-import style from "./../../styles/AddClue.module.scss";
+import style from "./AddClue.module.scss";
 
-const AddClue = ({ setClue, heightBtnRedirect }) => {
-  const [clueText, setClueText] = useState("");
+export default function AddClue({ setClue, heightBtnRedirect }) {
   const refTextArea = useRef(null);
   const refBtn = useRef(null);
   const [state, setState] = useState("close");
@@ -14,11 +13,8 @@ const AddClue = ({ setClue, heightBtnRedirect }) => {
     setHeightTextArea(refTextArea.current.offsetHeight);
     setHeightBtn(refBtn.current.offsetHeight);
   }, []);
-  const changeClue = e => {
-    setClue(clueText);
-  };
   const changeClueText = e => {
-    setClueText(e.target.value);
+    setClue(e.target.value);
   };
 
   const changeAnimation = () => {
@@ -42,6 +38,7 @@ const AddClue = ({ setClue, heightBtnRedirect }) => {
     close: {
       borderColor: "rgba(0,0,0,0)",
     },
+    // this color is referenced in the variables.scss file with the name $white-c-secondary-color
     open: {
       borderColor: "rgb(10, 56, 113)",
     },
@@ -56,7 +53,7 @@ const AddClue = ({ setClue, heightBtnRedirect }) => {
   };
   const textH2 = {
     close: { opacity: 0, y: "100%", width: "0px" },
-    open: { opacity: 1, y: "0%", width: "auto"  },
+    open: { opacity: 1, y: "0%", width: "auto" },
   };
   const textArea = {
     close: { opacity: 0 },
@@ -65,7 +62,7 @@ const AddClue = ({ setClue, heightBtnRedirect }) => {
 
   return (
     <>
-      <motion.section
+      <motion.article
         className={style.section}
         layout
         initial={"close"}
@@ -113,9 +110,7 @@ const AddClue = ({ setClue, heightBtnRedirect }) => {
           animate={state}
           variants={textArea}
         />
-      </motion.section>
+      </motion.article>
     </>
   );
-};
-
-export default AddClue;
+}
