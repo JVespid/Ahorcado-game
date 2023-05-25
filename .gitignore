@@ -16,6 +16,9 @@ env.local
 # production
 /build
 
+#variable locales
+.env.local
+
 # misc
 .DS_Store
 *.pem

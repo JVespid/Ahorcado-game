@@ -2,6 +2,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { contextGeneral } from "@/services/context/general/context";
 import style from "./gameFunctional.module.scss";
 import hookNewWord from "./hookNewWord/hookNewWord";
+import Load from "../load/load";
 
 export default function GameFunctional() {
   let resLetter = 0;
@@ -51,36 +52,36 @@ export default function GameFunctional() {
   return (
     <>
       <section className={style["inputs"]}>
-        {word && word.trim()
-          ? word.split("").map((letterMap, index) => {
-              if (letterMap == " ") {
-                resLetter++;
-                return (
-                  <div
-                    key={`id:${id}-index:${index}`}
-                    className={
-                      style["space-between-letters"] +
-                      " " +
-                      style["letters-word"]
-                    }
-                  ></div>
-                );
-              }
-
+        {word && word.trim() ? (
+          word.split("").map((letterMap, index) => {
+            if (letterMap == " ") {
+              resLetter++;
               return (
-                <input
-                  type="text"
+                <div
                   key={`id:${id}-index:${index}`}
-                  placeholder={index - resLetter + 1}
                   className={
-                    style["inputs-letters"] + " " + style["letters-word"]
+                    style["space-between-letters"] + " " + style["letters-word"]
                   }
-                  onKeyDown={cancelFunctionality}
-                  ref={fillOutRefInputs}
-                />
+                ></div>
               );
-            })
-          : null}
+            }
+
+            return (
+              <input
+                type="text"
+                key={`id:${id}-index:${index}`}
+                placeholder={index - resLetter + 1}
+                className={
+                  style["inputs-letters"] + " " + style["letters-word"]
+                }
+                onKeyDown={cancelFunctionality}
+                ref={fillOutRefInputs}
+              />
+            );
+          })
+        ) : (
+          <Load />
+        )}
       </section>
     </>
   );

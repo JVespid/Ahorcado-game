@@ -1,0 +1,33 @@
+@import "../../../styles/general/variables";
+@import "../../../styles/general/mixin";
+
+.load {
+  position: absolute;
+  background-color: $transparent;
+
+  border-top: solid 10px $white-c-secondary-color;
+  border-bottom: solid 10px $white-c-secondary-color;
+  border-left: solid 10px $transparent;
+  border-right: solid 10px $transparent;
+
+  width: 7rem;
+  height: 7rem;
+
+  border-radius: 50%;
+
+  animation-name: loading;
+  animation-duration: 2s; /* Duración de la animación */
+  animation-timing-function: linear; /* Función de temporización de la animación */
+  animation-iteration-count: infinite; /* Cantidad de veces que se repite la animación */
+  animation-delay: 0s; /* Retardo antes de que comience la animación */
+  animation-fill-mode: forwards; /* Estilo aplicado al final de la animación */
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

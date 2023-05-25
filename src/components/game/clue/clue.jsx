@@ -21,25 +21,29 @@ export default function Clue({ clue }) {
   return (
     <>
       <section className={style["container-clue"]}>
-        <div className={style["h2-container"]}>
-          <motion.p
-            layout
-            variants={p}
-            animate={show ? "visible" : "hidden"}
-            initial={show ? "visible" : "hidden"}
-            className={style["title-clue"]}
-          >
-            {clue}
-          </motion.p>
-        </div>
-        <motion.button
-          whileHover={{ scale: 1.12 }}
-          whileFocus={{ scale: 0.8 }}
-          className={style["btn-clue"]}
-          onClick={Showed}
-        >
-          {msg}
-        </motion.button>
+        {clue ? (
+          <>
+            <div className={style["h2-container"]}>
+              <motion.p
+                layout
+                variants={p}
+                animate={show ? "visible" : "hidden"}
+                initial={show ? "visible" : "hidden"}
+                className={style["title-clue"]}
+              >
+                {clue}
+              </motion.p>
+            </div>
+            <motion.button
+              whileHover={{ scale: 1.12 }}
+              whileFocus={{ scale: 0.8 }}
+              className={style["btn-clue"]}
+              onClick={Showed}
+            >
+              {msg}
+            </motion.button>
+          </>
+        ) : null}
       </section>
     </>
   );
