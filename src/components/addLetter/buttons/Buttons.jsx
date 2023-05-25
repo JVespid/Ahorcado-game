@@ -4,7 +4,7 @@ import { contextGeneral } from "@/services/context/general/context";
 import style from "@/styles/addLetter.module.scss";
 import Btn from "@/components/global/btn";
 
-export const Buttons = ({ setHeightBtnRedirect, setModalVisible, setCurtain }) => {
+export default function Buttons({ setHeightBtnRedirect, setModalVisible, setCurtain }) {
   const { addLetter } = useContext(contextGeneral);
   const { btn, advertence } = addLetter;
   const router = useRouter();
@@ -32,17 +32,18 @@ export const Buttons = ({ setHeightBtnRedirect, setModalVisible, setCurtain }) =
         <div className={style.btn}>
           {btn
             ? btn.map((item, index) => (
-              <Btn
-                key={"btn-" + index}
-                value={item.value}
-                type={item.type}
-                action={actions[item.action]}
-                width={item.width}
-                height={item.height} />
-            ))
+                <Btn
+                  key={"btn-" + index}
+                  value={item.value}
+                  type={item.type}
+                  action={actions[item.action]}
+                  width={item.width}
+                  height={item.height}
+                />
+              ))
             : null}
         </div>
       </article>
     </>
   );
-};
+}

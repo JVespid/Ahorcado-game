@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
-import style from "./AddClue.module.scss";
+import style from "./addClue.module.scss";
 
 export default function AddClue({ setClue, heightBtnRedirect }) {
   const refTextArea = useRef(null);

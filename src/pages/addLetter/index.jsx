@@ -5,7 +5,7 @@ import style from "@/styles/addLetter.module.scss";
 import Logo from "@/components/global/logo";
 import AddClue from "@/components/addLetter/addClue/addClue";
 import FormAddPassword from "@/components/addLetter/FormAddPassword/formAddPassword";
-import { Buttons } from "@/components/addLetter/buttons/buttons";
+import Buttons from "@/components/addLetter/buttons/buttons";
 
 export default function Index() {
   const { addLetter } = useContext(contextGeneral);

@@ -1,15 +1,19 @@
 import Context from "@/services/context/general/context";
-import { createBrowserSupabaseClient } from "@supabase/auth-helpers-nextjs";
-import { SessionContextProvider } from "@supabase/auth-helpers-react";
-import { useState } from "react";
 
 import "@/styles/globals.scss";
-
+import Head from "next/head";
 
 export default function App({ Component, pageProps }) {
   return (
-    <Context>
-      <Component {...pageProps} />
-    </Context>
+    <>
+      <Head>
+        <title>Word Game</title>
+        <meta name="description" content="Word Game" />
+        <link rel="icon" href="https://jvespid.github.io/apis/JV.ico" />
+      </Head>
+      <Context>
+        <Component {...pageProps} />
+      </Context>
+    </>
   );
 }
