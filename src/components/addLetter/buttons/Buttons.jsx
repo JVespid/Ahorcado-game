@@ -6,8 +6,9 @@ import Btn from "@/components/global/btn";
 
 export default function Buttons({ setHeightBtnRedirect, setModalVisible, setCurtain }) {
   const { addLetter } = useContext(contextGeneral);
-  const { btn, advertence } = addLetter;
+  const { btn, advertence } = addLetter; 
   const router = useRouter();
+  console.log(" ")
   const refContainer = useRef(null);
 
   const cancel = () => {
