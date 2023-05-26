@@ -31,7 +31,7 @@ export const useDetectedLetter = () => {
         }
       };
       //window.addEventListener("keydown", handleKeyDown);
-      window.addEventListener("input", handleKeyDown);
+      window.addEventListener("keyup", handleKeyDown);
 
       return () => {
         setLastLetter("");
