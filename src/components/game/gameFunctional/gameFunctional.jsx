@@ -75,6 +75,7 @@ export default function GameFunctional() {
                   style["inputs-letters"] + " " + style["letters-word"]
                 }
                 onKeyDown={cancelFunctionality}
+                onInput={cancelFunctionality}
                 ref={fillOutRefInputs}
               />
             );
