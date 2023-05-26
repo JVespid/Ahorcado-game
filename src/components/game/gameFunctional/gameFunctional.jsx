@@ -30,6 +30,11 @@ export default function GameFunctional() {
   }, [lastLetter]);
 
   const cancelFunctionality = event => {
+    /* const limit = /[a-zA-Z]/
+    if (limit.test(event.nativeEvent.data)) {
+      event.preventDefault();
+    } */
+
     if (
       !(
         event.ctrlKey ||
@@ -39,8 +44,9 @@ export default function GameFunctional() {
         event.key == "Enter" ||
         event.key == "Tab"
       )
-    )
+    ) {
       event.preventDefault();
+    }
   };
 
   const fillOutRefInputs = event => {
@@ -74,8 +80,8 @@ export default function GameFunctional() {
                 className={
                   style["inputs-letters"] + " " + style["letters-word"]
                 }
-                onKeyDown={cancelFunctionality}
-                onInput={cancelFunctionality}
+                //onKeyDown={cancelFunctionality}
+                onKeyUp={cancelFunctionality}
                 ref={fillOutRefInputs}
               />
             );
