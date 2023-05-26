@@ -8,7 +8,9 @@ export const useWinTheGame = () => {
   const attemptsToWin = 5; // inicia a contar desde 0
 
   const winierOrLoser = ({ letter, word }) => {
+
     if (letter && word && typeof window !== "undefined") {
+      word = word.toLowerCase();
       let arrLetterFilter = new Set(),
         isLetterCorrect = false;
       if (arrLettersCorrect.length == 0 || wordHook != word) {

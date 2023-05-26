@@ -21,7 +21,7 @@ export default function GameFunctional() {
     if ((refInputs.current.length = word.length - resLetter)) {
       const arrLetterFilter = word.split("").filter(letter => letter != " ");
       arrLetterFilter.forEach((letter, index) => {
-        if (letter.toLowerCase() == lastLetter) {
+        if (letter.toLowerCase() == lastLetter.toLowerCase()) {
           refInputs.current[index].value = letter;
           refInputs.current[index].className += " " + style["letter-correct"];
         }
