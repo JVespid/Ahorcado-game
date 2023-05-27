@@ -14,10 +14,6 @@ export default function GameFunctional() {
   hookNewWord();
 
   useEffect(() => {
-    console.log({ word });
-  }, [word]);
-
-  useEffect(() => {
     if ((refInputs.current.length = word.length - resLetter)) {
       const arrLetterFilter = word.split("").filter(letter => letter != " ");
       arrLetterFilter.forEach((letter, index) => {

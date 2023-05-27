@@ -27,8 +27,6 @@ export const useDBWords = () => {
       )
       .join("");
 
-    console.log({ wordNew });
-
     if (limitsComas.test(wordNew) || limitNoLetter.test(wordNew)) {
       return {
         result: {
