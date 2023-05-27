@@ -77,8 +77,9 @@ const initialState = {
           // para que el front end no se rompa, hay que dividir los mensajes en arrays 40 - 50 caracteres
           playing: "",
           win: [
-            ["Felicidades, ¡eso no fue nada para ti!"],
-            ["prueba otra vez y demuestra que no fue suerte"],
+            ["Felicidades, ¡eso no fue nada!"],
+            ["prueba otra vez y demuestra que "],
+            ["no fue suerte"],
           ],
           lose: ["Eso estuvo cercas, inténtalo otra vez"],
         },

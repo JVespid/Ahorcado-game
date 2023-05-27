@@ -54,7 +54,7 @@ export default function Keyboard() {
     <>
       <motion.div className={style["keyboard-container"]}>
         <motion.div className={style["btn-hidden"]}>
-          <button
+          <motion.button
             layout
             whileHover={{ scale: 1.1 }}
             whileFocus={{ scale: 0.8 }}
@@ -74,7 +74,7 @@ export default function Keyboard() {
             >
               ^
             </motion.div>
-          </button>
+          </motion.button>
         </motion.div>
         <motion.div
           layout
