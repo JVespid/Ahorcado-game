@@ -21,7 +21,7 @@ export default function GameFunctional() {
     if ((refInputs.current.length = word.length - resLetter)) {
       const arrLetterFilter = word.split("").filter(letter => letter != " ");
       arrLetterFilter.forEach((letter, index) => {
-        if (letter.toLowerCase() == lastLetter.toLowerCase()) {
+        if (letter.toLowerCase() == lastLetter) {
           refInputs.current[index].value = letter;
           refInputs.current[index].className += " " + style["letter-correct"];
         }
@@ -30,11 +30,6 @@ export default function GameFunctional() {
   }, [lastLetter]);
 
   const cancelFunctionality = event => {
-    /* const limit = /[a-zA-Z]/
-    if (limit.test(event.nativeEvent.data)) {
-      event.preventDefault();
-    } */
-
     if (
       !(
         event.ctrlKey ||
@@ -44,9 +39,8 @@ export default function GameFunctional() {
         event.key == "Enter" ||
         event.key == "Tab"
       )
-    ) {
+    )
       event.preventDefault();
-    }
   };
 
   const fillOutRefInputs = event => {
@@ -80,9 +74,9 @@ export default function GameFunctional() {
                 className={
                   style["inputs-letters"] + " " + style["letters-word"]
                 }
-                //onKeyDown={cancelFunctionality}
-                onKeyUp={cancelFunctionality}
+                onKeyDown={cancelFunctionality}
                 ref={fillOutRefInputs}
+                disabled={true}
               />
             );
           })

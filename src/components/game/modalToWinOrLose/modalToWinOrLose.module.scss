@@ -17,7 +17,7 @@
 box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.36);
 
   width: clamp(300px, 50%, 400px);
-
+  
   height: auto;
   padding: 20px;
   * {
@@ -28,7 +28,7 @@ box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.36);
 
 .title-container {
   margin: 20px auto;
-
+  
   font-size: 1.5rem;
   height: auto;
   h2 {
@@ -38,7 +38,9 @@ box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.36);
 
 .messages-container {
   margin: 20px auto;
+  width: clamp(300px, 90%, 400px);
   p {
+    width: clamp(300px, 90%, 400px);
     height: auto;
     border-bottom: 1px solid $white-c-secondary-color;
     overflow: hidden;

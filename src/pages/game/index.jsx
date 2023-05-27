@@ -9,10 +9,19 @@ import { contextGeneral } from "@/services/context/general/context";
 import ModalToWinOrLose from "@/components/game/modalToWinOrLose/modalToWinOrLose";
 import Horca from "@/components/game/horca/horca";
 import Clue from "@/components/game/clue/clue";
+import Keyboard from "@/components/game/keyboard/keyboard";
+import useIsMovible from "@/services/hooks/useIsMovile";
 
 export default function Index() {
   const { lastLetter, word, clue } = useContext(contextGeneral);
-  const { winierOrLoser,resetGame, result: winOrLose, attemptsUser } = useWinTheGame();
+
+  const is = useIsMovible();
+  const {
+    winierOrLoser,
+    resetGame,
+    result: winOrLose,
+    attemptsUser,
+  } = useWinTheGame();
 
   useEffect(() => {
     if (lastLetter && lastLetter.trim()) {
@@ -32,13 +41,26 @@ export default function Index() {
         </article>
 
         <article>
-          <Clue clue={clue}/>
+          <Clue clue={clue} />
         </article>
 
         <article className={style["inputs-letters"]}>
           <GameFunctional />
           <PrintLetter />
         </article>
+        {is ? (
+          <article>
+            <Keyboard />
+          </article>
+        ) : (
+          <>
+            {!(lastLetter && lastLetter.trim()) && (
+              <p className={style["new-game"]}>
+                {"inicia presionando cualquier letra "}
+              </p>
+            )}
+          </>
+        )}
       </main>
     </>
   );

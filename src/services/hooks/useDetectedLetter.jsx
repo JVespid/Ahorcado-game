@@ -18,8 +18,8 @@ export const useDetectedLetter = () => {
             const arrayLetterUsed = localStorage.getItem("letter-array");
             let arrayLetterUsedParsed = JSON.parse(arrayLetterUsed);
 
-            if (!arrayLetterUsedParsed.includes(letter.toLowerCase())) {
-              arrayLetterUsedParsed.push(letter.toLowerCase());
+            if (!arrayLetterUsedParsed.includes(letter)) {
+              arrayLetterUsedParsed.push(letter);
               const jsonLetterUsed = JSON.stringify(arrayLetterUsedParsed);
               localStorage.setItem("letter-array", jsonLetterUsed);
               setTecla(letter);
@@ -30,8 +30,7 @@ export const useDetectedLetter = () => {
           }
         }
       };
-      //window.addEventListener("keydown", handleKeyDown);
-      window.addEventListener("keyup", handleKeyDown);
+      window.addEventListener("keydown", handleKeyDown);
 
       return () => {
         setLastLetter("");

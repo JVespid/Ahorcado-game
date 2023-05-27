@@ -1,0 +1,75 @@
+@import "../../../styles/general/variables";
+@import "../../../styles/general/mixin";
+
+.keyboard-container {
+  @include center-flex {
+    flex-direction: column;
+  }
+  * {
+    color: $white-c-secondary-color;
+  }
+  .btn-hidden {
+    @include center-flex;
+    width: 100%;
+    height: auto;
+    button {
+      @include center-flex {
+        justify-content: space-between;
+      }
+      padding: 15px;
+      border: solid 1px $white-c-secondary-color;
+      cursor: pointer;
+      width: 200px;
+      height: 20px;
+      margin: 10px auto;
+      p {
+        width: 80%;
+        border-right: solid 1px $white-c-secondary-color;
+      }
+    }
+  }
+}
+.arrow-btn {
+  background-color: $transparent;
+  color: $white-c-secondary-color;
+  font-size: 15px;
+  height: 18px;
+  width: 18px;
+  border-right: solid 1px $white-c-secondary-color;
+  border-left: solid 1px $white-c-secondary-color;
+  border-top: solid 1px $transparent;
+  border-bottom: solid 1px $transparent;
+  border-radius: 50%;
+}
+
+.keyboard {
+  @include center-flex(2px) {
+    flex-direction: column;
+    align-items: center;
+  }
+  overflow: hidden;
+  .fila {
+    @include center-flex(2px);
+    button {
+      cursor: pointer;
+      border: solid 1px $white-c-secondary-color;
+      @include center-flex;
+      width: clamp(30px, 100vw, 34px);
+      height: clamp(30px, 100vw, 45px);
+
+      &:disabled {
+        opacity: 0.9;
+        cursor: not-allowed;
+        background-color: $white-c-quinten-color;
+      }
+      &:hover {
+        color: $white-bg-primary-color;
+        border: solid 1px $white-bg-primary-color;
+        background-color: $white-c-secondary-color;
+      }
+    }
+  }
+}
+#__next {
+  overflow: auto;
+}
