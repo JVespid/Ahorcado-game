@@ -7,8 +7,11 @@
     flex-direction: column;
   }
 
-  height: auto;
   width: auto;
+  height: auto;
+  overflow: auto;
+  padding: auto 20px;
+  padding-top: 100px;
 }
 
 .new-game{

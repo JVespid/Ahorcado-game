@@ -7,6 +7,8 @@
   @include center-flex {
     flex-direction: column;
   }
+
+  overflow: hidden;
   .container_sections {
     position: relative;
     width: max-content;
