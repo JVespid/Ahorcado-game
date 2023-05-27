@@ -4,6 +4,7 @@ export const methods = {
   CHANGE_GAME_CLUE_WORD: `CHANGE_GAME_CLUE_WORD`,
   SET_LAST_LETTER: `SET_LAST_LETTER`,
   SET_USED_LETTER: `SET_USED_LETTER`,
+  SET_LAST_LETTER_HOOK: `SET_LAST_LETTER_HOOK`,
 };
 
 export const Reducer = (state, action) => {
@@ -43,6 +44,14 @@ export const Reducer = (state, action) => {
         game: {
           ...state.game,
           usedLetter: payload.bool,
+        },
+      };
+    case "SET_LAST_LETTER_HOOK":
+      return {
+        ...state,
+        game: {
+          ...state.game,
+          lastLetterHook: payload,
         },
       };
   }

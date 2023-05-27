@@ -9,6 +9,7 @@ const initialState = {
     word: "",
     clue: "",
     lastLetter: "",
+    lastLetterHook: "",
     usedLetter: true,
   },
   system: {
@@ -117,10 +118,21 @@ const Context = ({ children }) => {
 
   const setLastLetter = letter => {
     if (letter == "") localStorage.setItem("letter-array", JSON.stringify([]));
-    
+
     if (/[a-zA-Z]/.test(letter) || letter === "") {
       dispatch({
         type: methods.SET_LAST_LETTER,
+        payload: letter,
+      });
+    }
+  };
+
+  const setLastHook = ({ letter }) => {
+    if (letter == "") localStorage.setItem("letter-array", JSON.stringify([]));
+
+    if (/[a-zA-Z]/.test(letter) || letter === "") {
+      dispatch({
+        type: methods.SET_LAST_LETTER_HOOK,
         payload: letter,
       });
     }
@@ -145,7 +157,9 @@ const Context = ({ children }) => {
       lastLetter: state.game.lastLetter,
       colors: state.system.colors,
       usedLetter: state.game.usedLetter,
+      lastLetterHook: state.game.lastLetterHook,
       setLastLetter,
+      setLastHook,
       changeGameClueWord,
       resetClueWord,
       setUsedLetter,

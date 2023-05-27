@@ -4,7 +4,7 @@ import { contextGeneral } from "@/services/context/general/context";
 
 // version 1 - 2021-05-08 21:32 hook personalizado que usa el evento window.addEventListener('keyDown').
 export const useDetectedLetter = () => {
-  const { setLastLetter } = useContext(contextGeneral);
+  const { setLastLetter, setLastHook } = useContext(contextGeneral);
   const [tecla, setTecla] = useState("");
   const limits = /[a-zA-Z]/;
 
@@ -23,16 +23,19 @@ export const useDetectedLetter = () => {
               const jsonLetterUsed = JSON.stringify(arrayLetterUsedParsed);
               localStorage.setItem("letter-array", jsonLetterUsed);
               setTecla(letter);
+              setLastHook({ letter });
             }
           } catch (error) {
             localStorage.setItem("letter-array", JSON.stringify([letter]));
             setTecla(letter);
+            setLastHook({ letter });
           }
         }
       };
       window.addEventListener("keydown", handleKeyDown);
 
       return () => {
+        setLastHook({ letter: "" });
         setLastLetter("");
         localStorage.setItem("letter-array", JSON.stringify([]));
         window.removeEventListener("keydown", handleKeyDown);

@@ -1,11 +1,11 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import style from "./keyboard.module.scss";
 import { contextGeneral } from "@/services/context/general/context";
 import { motion } from "framer-motion";
 
 export default function Keyboard() {
-  const { setLastLetter } = useContext(contextGeneral);
+  const { setLastLetter, lastLetterHook } = useContext(contextGeneral);
   const [buttonStates, setButtonStates] = useState({});
   const [changeStyle, setChangeStyle] = useState("hidden");
 
@@ -15,6 +15,15 @@ export default function Keyboard() {
       [letter]: true,
     }));
   };
+
+  useEffect(() => {
+    if (lastLetterHook && lastLetterHook.trim()) {
+      setButtonStates(prevButtonStates => ({
+        ...prevButtonStates,
+        [lastLetterHook]: true,
+      }));
+    }
+  }, [lastLetterHook]);
   const keyboardAlphabet = [
     ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
     ["a", "s", "d", "f", "g", "h", "j", "k", "l", "ñ"],
@@ -54,7 +63,7 @@ export default function Keyboard() {
                 ? setChangeStyle("visible")
                 : setChangeStyle("hidden")
             }
-          > 
+          >
             <p>Teclado</p>
             <motion.div
               layout

@@ -48,19 +48,14 @@ export default function Index() {
           <GameFunctional />
           <PrintLetter />
         </article>
-        {is ? (
-          <article>
-            <Keyboard />
-          </article>
-        ) : (
-          <>
-            {!(lastLetter && lastLetter.trim()) && (
-              <p className={style["new-game"]}>
-                {"inicia presionando cualquier letra "}
-              </p>
-            )}
-          </>
+        {!(lastLetter && lastLetter.trim()) && (
+          <p className={style["new-game"]}>
+            {"inicia presionando cualquier letra o usa el teclado virtual"}
+          </p>
         )}
+        <article>
+          <Keyboard />
+        </article>
       </main>
     </>
   );
